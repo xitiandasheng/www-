@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>数字阅读空间</title>
+  
+  <meta charset="utf-8" />
+  <style type="text/css">
+    /* 公用样式 */
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+
+  .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 50px;
+      /* 根据实际logo尺寸调整 */
+      height: auto;
+      /* 保持logo比例 */
+    }
+
+    /* 导航菜单*/
+  .head {
+      background-color: #781a1a;
+      width: 100%;
+
+      /* 控制子元素，横向排列并居中 */
+      display: flex;
+      flex-direction: row;
+      /* 横向排列 */
+      justify-content: center;
+      /* 横向居中 */
+    }
+
+  .head div {
+      width: 200px;
+      line-height: 50px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    /* 搜索框样式 */
+  .search-box {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+  .search-box input[type="text"] {
+      padding: 10px;
+      width: 500px;
+      margin-right: 5px;
+    }
+
+  .search-box input[type="submit"] {
+      padding: 10px 20px;
+      background-color: #781a1a;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+
+  .search-box input[type="submit"]:hover {
+      background-color: #5b5b97;
+    }
+
+    /* 正文内容*/
+  .content {
+      margin: 50px;
+      margin-left: 5%;
+      width: 80%;
+      height: 90%;
+      /* 控制子元素，竖向排列 */
+      display: flex;
+      flex-direction: column;
+      /* 竖向排列 */
+    }
+
+  .lines {
+      width: 50%;
+      flex-grow: 1;
+      /* lines高度比例为：1:1:1，平分content高度 */
+
+      /* 控制子元素，纵向排列 */
+      display: flex;
+      flex-direction: column;
+      /* 纵向排列 */
+    }
+
+  .lines div {
+      flex-grow: 1;
+      /* lines中的3个div，宽度占比为：1:1:1，平分lines宽度 */
+      /* 控制子元素，居中 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  .lines div img {
+      width: 35%;
+      height: 90%;
+    }
+
+  .main-content {
+      display: flex;
+      height: 100%;
+    }
+
+  .left-panel,
+  .right-panel {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border: 10px solid #ffffff;
+    }
+
+  .panel-section {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #000000;
+    }
+
+    /* 轮播图样式 */
+  .carousel {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow: hidden;
+    }
+
+  .carousel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    /* 文字样式 */
+  .text-panel {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #781a1a;
+      color: #fcfcfc;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* 新增样式：修改左右板块比例为 7:3 */
+  .left-panel,
+  .right-panel {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+  .right-panel {
+      width: 30%;
+    }
+
+    /* 新增样式：修改左上板块和左下板块比例为 8:2 */
+  .top-left-panel,
+  .bottom-left-panel {
+      width: 100%;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+    }
+
+  .bottom-left-panel {
+      height: 20%;
+    }
+
+    /* 新增样式：删除左下板块的文字 */
+  .bottom-left-panel p {
+      display: none;
+    }
+
+    /* 新增样式：将左下板块横向分为四个板块，每个板块添加左上板块的图片 */
+  .bottom-left-panel {
+      display: flex;
+      flex-direction: row;
+    }
+
+  .bottom-left-panel div {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+    }
+
+  .bottom-left-panel img {
+      width: 80%;
+      height: 80%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="picture/logo.png" alt="Logo" class="logo">
+
+  <!-- 搜索框 -->
+  <div class="search-box">
+     <input type="text" placeholder="搜索书籍...">
+     <input type="submit" value="搜索">
+    </div>
+
+  <!-- 网页头-弹性布局 -->
+  <div class="head">
+     <div>网站首页</div>
+     <div>作家名录</div>
+     <div>新闻中心</div>
+     <div>我的书架</div>
+     <div>联系我们</div>
+    </div>
+
+  <div class="main-content">
+     <div class="left-panel">
+        <div class="top-left-panel">
+          <div class="carousel" id="image-container">
+            <!-- 新增：默认显示第一张图片 -->
+            <img src="picture\img1.png" alt="Image 1" style="object-fit: cover;" id="default-image">
+          </div>
+        </div>
+        <div class="bottom-left-panel">
+            <!-- 新增：添加四个小图片 -->
+            <div><img src="picture\img1.png" alt="Image 1" style="object-fit: cover;" onclick="changeImage(this)"></div>
+            <div><img src="picture\img2.png" alt="Image 2" style="object-fit: cover;" onclick="changeImage(this)"></div>
+           <div><img src="picture\img3.jpg" alt="Image 3" style="object-fit: cover;" onclick="changeImage(this)"></div>
+            <div><img src="picture\img4.png" alt="Image 4" style="object-fit: cover;" onclick="changeImage(this)"></div>
+            </div>
+         </div>
+       <div class="right-panel">
+        <div class="activity-item">
+          <img src="picture/activity1.jpg.png" alt="活动 1 图片" width="100%" height="70%">
+          <h3>二手书春季大促</h3>
+          <p>时间：12 月 1 日 - 12 月 30 日</p>
+          <button onclick="toggleDetails(this)">详情</button>
+          <div class="activity-details" style="display:none;">
+            <p>冬雪叩窗，二手书市诗意开场，书页簌簌似时光浅吟。历史长卷在旧册舒展，科普星河于字间闪耀，言情故事携旧梦缱绻。大促之际，价格破冰，一折起笔绘阅读绮景，让经典不再高冷，小众佳作觅得伯乐。在这冷季，做书海拾贝人，赴文字之约，用双手拥抱满是墨香的 “知识暖炉”。</p>
+          </div>
+        </div>
+        <script>
+          function toggleDetails(button) {
+            var details = button.nextElementSibling;
+            if (details.style.display === "none") {
+              details.style.display = "block";
+            } else {
+              details.style.display = "none";
+            }
+          }
+        </script>
+  </div>
+</body>
+<script>
+// 页面加载完成后，设置默认显示的图片
+window.onload = function() {
+  var defaultImage = document.getElementById("default-image");
+  if (defaultImage) {
+    defaultImage.style.display = "block";
+  }
+};
+
+function changeImage(img) {
+  var imageContainer = document.getElementById("image-container");
+  imageContainer.innerHTML = "";
+  imageContainer.appendChild(img.cloneNode(true));
+}
+</script>
+</html>
+</script>
+</html>
+
+<script>
+window.onload = function() {
+  var defaultImage = document.getElementById("default-image");
+  if (defaultImage) {
+    defaultImage.style.display = "block";
+  }
+};
+
+function changeImage(img) {
+  var imageContainer = document.getElementById("image-container");
+  var newImage = img.cloneNode(true);
+  newImage.style.opacity = 0;
+  imageContainer.innerHTML = "";
+  imageContainer.appendChild(newImage);
+  fadeIn(newImage);
+}
+function fadeIn(element) {
+  var opacity = 0;
+  var interval = setInterval(function() {
+    if (opacity < 1) {
+      opacity += 0.1;
+      element.style.opacity = opacity;
+    } else {
+      clearInterval(interval);
+    }
+  }, 100);
+}
+</script>
+
